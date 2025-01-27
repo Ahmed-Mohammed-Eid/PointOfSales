@@ -1,0 +1,42 @@
+.Create {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.2rem 3rem;
+	background: var(--color-paynow-button);
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.6rem;
+	font-weight: 600;
+	font-family: var(--font-main);
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		background: var(--color-paynow-button);
+		filter: brightness(0.95);
+	}
+
+	&:active {
+		transform: translateY(1px);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(var(--color-paynow-button), 0.3);
+	}
+
+	img {
+		transition: transform 0.2s ease;
+	}
+
+	&:hover img {
+		transform: scale(1.1);
+	}
+}

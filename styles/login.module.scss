@@ -1,0 +1,272 @@
+.Login {
+	direction: rtl;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+	padding: 2rem;
+	background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%236571ff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+		z-index: 0;
+	}
+
+	&__container {
+		position: relative;
+		width: 100%;
+		max-width: 45rem;
+		padding: 4rem 3rem;
+		background-color: #fff;
+		border-radius: 1.5rem;
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+		animation: fadeIn 0.6s ease-out;
+		z-index: 1;
+		backdrop-filter: blur(10px);
+	}
+
+	&__header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		margin-bottom: 4rem;
+
+		h2 {
+			font-size: 2.4rem;
+			font-weight: 600;
+			margin: 1.5rem 0;
+			color: #2d3748;
+			background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
+
+	&__logo {
+		transform: scale(1);
+		transition: transform 0.3s ease;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+
+	&__form {
+		width: 100%;
+
+		button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 1rem;
+			width: 100%;
+			font-family: var(--font-main);
+			font-size: 1.6rem;
+			font-weight: 500;
+			border: none;
+			border-radius: 8px;
+			padding: 1.4rem 3rem;
+			color: #fff;
+			background: linear-gradient(
+				135deg,
+				var(--color-primary) 0%,
+				#4f5bff 100%
+			);
+			cursor: pointer;
+			transition: all 0.3s ease;
+			position: relative;
+			overflow: hidden;
+
+			&:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(101, 113, 255, 0.3);
+			}
+
+			&:active {
+				transform: translateY(0);
+			}
+		}
+	}
+
+	&__input_container {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.8rem;
+		position: relative;
+		margin-bottom: 2.5rem;
+
+		label {
+			font-size: 1.4rem;
+			font-weight: 500;
+			color: #4a5568;
+			transition: all 0.2s ease;
+
+			span {
+				color: var(--color-primary);
+				font-size: 1.4rem;
+			}
+		}
+
+		&:focus-within label {
+			color: var(--color-primary);
+			transform: translateY(-2px);
+		}
+	}
+
+	&__input_wrapper {
+		position: relative;
+		width: 100%;
+	}
+
+	&__icon {
+		position: absolute;
+		left: 1.2rem;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 2rem;
+		height: 2rem;
+		color: #a0aec0;
+		transition: all 0.3s ease;
+	}
+
+	&__icon_clickable {
+		cursor: pointer;
+		&:hover {
+			color: var(--color-primary);
+		}
+	}
+
+	&__input {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		width: 100%;
+		background-color: #f7fafc;
+		border: 2px solid #edf2f7;
+		border-radius: 8px;
+		color: #2d3748;
+		display: block;
+		font-family: var(--font-main);
+		font-size: 1.5rem;
+		font-weight: 400;
+		line-height: 1.5;
+		padding: 1.2rem 1.5rem;
+		padding-left: 4rem;
+		transition: all 0.3s ease;
+		caret-color: var(--color-primary);
+
+		&::placeholder {
+			color: #a0aec0;
+		}
+
+		&:focus {
+			outline: none;
+			border-color: var(--color-primary);
+			background-color: #fff;
+			box-shadow: 0 0 0 3px rgba(101, 113, 255, 0.1);
+
+			& + .Login__icon {
+				color: var(--color-primary);
+			}
+		}
+	}
+
+	&__remember_me {
+		margin-bottom: 2rem;
+	}
+
+	&__checkbox_container {
+		display: flex;
+		align-items: center;
+		font-size: 1.4rem;
+		color: #4a5568;
+		cursor: pointer;
+		user-select: none;
+
+		input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+		}
+	}
+
+	&__checkmark {
+		position: relative;
+		display: inline-block;
+		width: 1.8rem;
+		height: 1.8rem;
+		margin-left: 0.8rem;
+		background-color: #f7fafc;
+		border: 2px solid #edf2f7;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+
+		&::after {
+			content: "";
+			position: absolute;
+			display: none;
+			left: 5px;
+			top: 1px;
+			width: 5px;
+			height: 10px;
+			border: solid white;
+			border-width: 0 2px 2px 0;
+			transform: rotate(45deg);
+		}
+	}
+
+	.Login__checkbox_container:hover input ~ .Login__checkmark {
+		border-color: var(--color-primary);
+	}
+
+	.Login__checkbox_container input:checked ~ .Login__checkmark {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
+	}
+
+	.Login__checkbox_container input:checked ~ .Login__checkmark::after {
+		display: block;
+	}
+
+	&__button_icon {
+		width: 2rem;
+		height: 2rem;
+		transition: transform 0.3s ease;
+	}
+
+	&__button_loading {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(255, 255, 255, 0.1);
+		}
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
