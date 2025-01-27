@@ -265,7 +265,7 @@ export async function getServerSideProps(context) {
 		} else if (roleValue === "cashier") {
 			return {
 				redirect: {
-					destination: "/branch",
+					destination: "/callcenter",
 					permanent: false,
 				},
 			};
