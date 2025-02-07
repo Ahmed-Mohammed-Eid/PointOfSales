@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import classes from "./Inputs.module.scss";
 import Image from "next/image";
 //IMPORTS
-import InputsDialog from "./InputsDialog";
 import CustomSelect from "@/components/Admin/Dashboard/CustomSelect/CustomSelect";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -304,21 +303,141 @@ function Inputs({ roleValue }) {
 
 	return (
 		<section className={classes.Container}>
-			<div className={classes.TotalsBar}>
-				<button
-					className={classes.DialogButton}
-					onClick={() => setIsDialogOpen(true)}
-				>
+			<div className={classes.InputsSection}>
+				{/* Phone & Client Name row */}
+				<div className={classes.InputContainer}>
+					<input
+						type="tel"
+						className={classes.Input}
+						placeholder={"رقم الهاتف"}
+						name={"PhoneNumber"}
+						value={PhoneNumber != null ? PhoneNumber : ""}
+						onInput={handleChange}
+					/>
+					<Image
+						src={"/Icons/Phone.svg"}
+						alt={"Phone icon"}
+						width={20}
+						height={20}
+						className={classes.Icon}
+					/>
+				</div>
+				<div className={classes.InputContainer}>
+					<input
+						type="text"
+						className={classes.Input}
+						placeholder={"اسم العميل"}
+						name={"ClientName"}
+						value={ClientName != null ? ClientName : ""}
+						onInput={handleChange}
+					/>
 					<Image
 						src={"/Icons/Client.svg"}
-						alt={"Edit details"}
-						width={24}
-						height={24}
-						className={classes.ButtonIcon}
+						alt={"Client icon"}
+						width={20}
+						height={20}
+						className={classes.Icon}
 					/>
-					<span>تفاصيل الطلب</span>
-				</button>
+				</div>
 
+				{/* Address & Branch row */}
+				<div className={classes.InputContainer}>
+					<input
+						type="text"
+						className={classes.Input}
+						placeholder={"العنوان"}
+						name={"ClientAddress"}
+						value={ClientAddress != null ? ClientAddress : ""}
+						onInput={handleChange}
+					/>
+					<Image
+						src={"/Icons/Location.svg"}
+						alt={"Location icon"}
+						width={20}
+						height={20}
+						className={classes.Icon}
+					/>
+				</div>
+				<div className={classes.InputContainer}>
+					<CustomSelect
+						label={"الفرع"}
+						arrOfValue={branches}
+						selectedValue={getSelectedItem(id, branches)}
+						disabled={roleValue === "cashier"}
+						change={(opt) => {
+							dispatch(
+								changeAreaSelect({
+									label: opt?.label || "",
+									id: opt?.value || "",
+								})
+							);
+						}}
+					/>
+				</div>
+
+				{/* Tax & Sale row */}
+				<div className={classes.InputContainer}>
+					<input
+						type="number"
+						className={classes.Input}
+						placeholder={"قيمة الضريبة"}
+						disabled
+						name={"TaxAmount"}
+						value={TaxAmount > 0 ? TaxAmount : ""}
+					/>
+					<Image
+						src={"/Icons/Percent.svg"}
+						alt={"Percent icon"}
+						width={20}
+						height={20}
+						className={classes.Icon}
+					/>
+				</div>
+				<div className={classes.InputContainer}>
+					<input
+						type="number"
+						className={classes.Input}
+						disabled
+						placeholder={"قيمة الخصم"}
+						value={Sale > 0 ? Sale : ""}
+						name={"Sale"}
+					/>
+					<Image
+						src={
+							discountType === "fixed"
+								? "/Icons/Dollar.svg"
+								: "/Icons/Percent.svg"
+						}
+						alt={"Dollar icon"}
+						width={20}
+						height={20}
+						className={classes.Icon}
+					/>
+				</div>
+
+				{/* Payment Method row (cashier only) */}
+				{roleValue === "cashier" && (
+					<div
+						className={`${classes.InputContainer} ${classes["full-width"]}`}
+					>
+						<CustomSelect
+							label={"وسيلة الدفع"}
+							arrOfValue={payments}
+							selectedValue={getSelectedItem(paymentId, payments)}
+							change={(opt) => {
+								dispatch(
+									changePaymentMethod({
+										label: opt?.label || "",
+										id: opt?.value || "",
+									})
+								);
+							}}
+						/>
+					</div>
+				)}
+			</div>
+
+			<div className={classes.TotalsBar}>
 				<div className={classes.TotalsInfo}>
 					<div className={classes.TotalItem}>
 						<span className={classes.Label}>المجموع الفرعي:</span>
@@ -336,17 +455,6 @@ function Inputs({ roleValue }) {
 					</div>
 				</div>
 			</div>
-
-			<InputsDialog
-				isOpen={isDialogOpen}
-				setIsOpen={setIsDialogOpen}
-				roleValue={roleValue}
-				branches={branches}
-				payments={payments}
-				handleChange={handleChange}
-				getSelectedItem={getSelectedItem}
-				discountType={discountType}
-			/>
 		</section>
 	);
 }
